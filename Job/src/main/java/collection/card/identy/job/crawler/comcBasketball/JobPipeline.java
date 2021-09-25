@@ -46,7 +46,7 @@ public class JobPipeline implements Pipeline {
         }
 
         if (title != null) {
-            comcBasketballEsBiz.update(jobPageProcessor.urlToUniqueId(resultItems.getRequest().getUrl()), title, frontImgUrl, backImgUrl, price);
+            comcBasketballEsBiz.update(resultItems.getRequest().getUrl(), title, frontImgUrl, backImgUrl, price);
         }
     }
 }

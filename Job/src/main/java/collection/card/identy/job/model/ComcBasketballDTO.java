@@ -1,7 +1,7 @@
 package collection.card.identy.job.model;
 
 public class ComcBasketballDTO {
-    private String id;
+    private String url;
     private String title;
     private String frontImgUrl;
     private String backImgUrl;
@@ -39,11 +39,11 @@ public class ComcBasketballDTO {
         this.price = price;
     }
 
-    public String getId() {
-        return id;
+    public String getUrl() {
+        return url;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setUrl(String url) {
+        this.url = url;
     }
 }

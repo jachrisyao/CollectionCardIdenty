@@ -1,5 +1,7 @@
 package collection.card.identy.job.crawler.comcBasketball;
 
+import collection.card.identy.job.es.ComcBasketballEsBiz;
+import collection.card.identy.job.model.UrlResponseWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -9,6 +11,7 @@ import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class JobPageProcessor implements PageProcessor {
@@ -17,6 +20,9 @@ public class JobPageProcessor implements PageProcessor {
 
     @Autowired
     private JobPipeline jobPipeline;
+
+    @Autowired
+    private ComcBasketballEsBiz comcBasketballEsBiz;
 
     @Scheduled(initialDelay = 0, fixedDelay = 10000)
     public void run() {
@@ -48,6 +54,9 @@ public class JobPageProcessor implements PageProcessor {
         else {
             //详情页链接
             List<String> links = page.getHtml().$(".imgPanel").links().all();
+            UrlResponseWrapper urlResponseWrapper = comcBasketballEsBiz.queryUrls(links);
+            if (urlResponseWrapper != null && urlResponseWrapper.getUrlList() != null)
+                links = links.stream().filter(x -> !urlResponseWrapper.getUrlList().contains(x)).collect(Collectors.toList());
             //下一页链接
             String nplinks = page.getHtml().$("#ctl00_ContentPlaceHolder1_cmdNext_Bottom", "href").toString();
             links.add(nplinks);
@@ -62,14 +71,10 @@ public class JobPageProcessor implements PageProcessor {
 
     //判断当前页面是否为详情页
     public boolean isDetailUrl(String url) {
-        return urlToUniqueId(url).contains("/");
+        return url.replace(pageUrl, "").contains("/");
     }
 
     public boolean isEBayUrl(String url) {
         return url.contains("eBay_Auction");
-    }
-
-    public String urlToUniqueId(String url) {
-        return url.replace(pageUrl, "");
     }
 }
