@@ -38,9 +38,9 @@ public class JobPipeline implements Pipeline {
             if (entry.getKey().equals("title"))
                 title = resultItems.get("title").toString();
             if (entry.getKey().equals("frontImgUrl"))
-                frontImgUrl = resultItems.get("frontImgUrl").toString();
+                frontImgUrl = resultItems.get("frontImgUrl").toString().replace("size=original", "size=zoom");
             if (entry.getKey().equals("backImgUrl"))
-                backImgUrl = resultItems.get("backImgUrl").toString();
+                backImgUrl = resultItems.get("backImgUrl").toString().replace("size=original", "size=zoom");
             if (entry.getKey().equals("price"))
                 price = resultItems.get("price").toString();
         }

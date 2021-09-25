@@ -23,7 +23,7 @@ public class JobPageProcessor implements PageProcessor {
         Spider.create(this)
                 .addPipeline(jobPipeline)
                 .addUrl(pageUrl)
-                .thread(1)
+                .thread(10)
                 .run();
     }
 
