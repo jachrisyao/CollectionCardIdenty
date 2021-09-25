@@ -6,6 +6,8 @@ import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.common.xcontent.XContentType;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +16,7 @@ import java.io.IOException;
 @Service
 public class ComcBasketballEsBiz {
     private final static String indexName = "comc_basketball";
-
+    protected static Logger logger = LoggerFactory.getLogger(ComcBasketballEsBiz.class);
     @Autowired
     private EsClient esClient;
 
@@ -29,7 +31,7 @@ public class ComcBasketballEsBiz {
         try {
             esClient.update(request);
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("es update[id='" + id + "']", e);
         }
     }
 
