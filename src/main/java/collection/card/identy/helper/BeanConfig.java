@@ -25,24 +25,5 @@ public class BeanConfig {
 
         RestClientBuilder builder = RestClient.builder(new HttpHost(hostName, port)).setHttpClientConfigCallback(httpClientBuilder -> httpClientBuilder.setDefaultCredentialsProvider(credentialsProvider));
         return new RestHighLevelClient(builder);
-
-//        RestClientBuilder builder = RestClient.builder(new HttpHost(userName + ":" + password + "@" + hostName, port, "http"));
-//        builder.setRequestConfigCallback(requestConfigBuilder -> {
-//            requestConfigBuilder.setConnectTimeout(60000);
-//            requestConfigBuilder.setSocketTimeout(30000);
-//            requestConfigBuilder.setConnectionRequestTimeout(60000);
-//            return requestConfigBuilder;
-//        });
-//        builder.setHttpClientConfigCallback(httpClientBuilder -> {
-//            httpClientBuilder.setMaxConnTotal(30);
-//            httpClientBuilder.setMaxConnPerRoute(10);
-//            CredentialsProvider provider = new BasicCredentialsProvider();
-//            AuthScope scope = new AuthScope(hostName, 80, "http");
-//            UsernamePasswordCredentials credentials = new UsernamePasswordCredentials(userName, password);
-//            provider.setCredentials(scope, credentials);
-//            httpClientBuilder.setMaxConnTotal(30).setMaxConnPerRoute(10).setKeepAliveStrategy((httpRequest, httpResponse) -> 50000).setDefaultCredentialsProvider(provider);
-//            return httpClientBuilder;
-//        });
-//        return new RestHighLevelClient(builder);
     }
 }

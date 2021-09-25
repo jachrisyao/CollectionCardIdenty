@@ -1,40 +1,52 @@
 package collection.card.identy.crawler.comcBasketball;
 
 import collection.card.identy.es.ComcBasketballEsBiz;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import us.codecraft.webmagic.ResultItems;
 import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
+import java.util.Map;
+
 @Component
 public class JobPipeline implements Pipeline {
+    protected static Logger logger = LoggerFactory.getLogger(JobPipeline.class);
     @Autowired
     private ComcBasketballEsBiz comcBasketballEsBiz;
+    @Autowired
+    private JobPageProcessor jobPageProcessor;
 
     @Override
     public void process(ResultItems resultItems, Task task) {
-        System.out.println("get page: " + resultItems.getRequest().getUrl());
+        //非详情页不处理
+        if (!jobPageProcessor.isDetailUrl(resultItems.getRequest().getUrl())) {
+            logger.info("get page: " + resultItems.getRequest().getUrl());
+            System.out.println("get page: " + resultItems.getRequest().getUrl());
+            return;
+        }
+        //System.out.println("get page: " + resultItems.getRequest().getUrl());
 
         String title = "";
         String frontImgUrl = "";
         String backImgUrl = "";
         String price = "";
-        if (resultItems.get("title") != null)
-            title = resultItems.get("title").toString();
-        if (resultItems.get("frontImgUrl") != null)
-            frontImgUrl = resultItems.get("frontImgUrl").toString();
-        if (resultItems.get("backImgUrl") != null)
-            backImgUrl = resultItems.get("backImgUrl").toString();
-        if (resultItems.get("price") != null)
-            price = resultItems.get("price").toString();
-        System.out.println("id: " + resultItems.getRequest().getUrl().replace("https://www.comc.com/Cards/Basketball", ""));
-        System.out.println("title: " + title);
-        System.out.println("frontImgUrl: " + frontImgUrl);
-        System.out.println("backImgUrl: " + backImgUrl);
-        System.out.println("price: " + price);
+        for (Map.Entry<String, Object> entry : resultItems.getAll().entrySet()) {
+            //System.out.println(entry.getKey() + ":\t" + entry.getValue());
+            if (entry.getKey().equals("title"))
+                title = resultItems.get("title").toString();
+            if (entry.getKey().equals("frontImgUrl"))
+                frontImgUrl = resultItems.get("frontImgUrl").toString();
+            if (entry.getKey().equals("backImgUrl"))
+                backImgUrl = resultItems.get("backImgUrl").toString();
+            if (entry.getKey().equals("price"))
+                price = resultItems.get("price").toString();
+        }
+
         if (title != null) {
-            comcBasketballEsBiz.update(resultItems.getRequest().getUrl().replace("https://www.comc.com/Cards/Basketball", ""), title, frontImgUrl, backImgUrl, price);
+            comcBasketballEsBiz.update(jobPageProcessor.urlToUniqueId(resultItems.getRequest().getUrl()), title, frontImgUrl, backImgUrl, price);
         }
     }
 }
