@@ -1,4 +1,4 @@
-package collection.card.identy.es;
+package collection.card.identy.job.es;
 
 import org.elasticsearch.action.update.UpdateRequest;
 import org.elasticsearch.action.update.UpdateResponse;

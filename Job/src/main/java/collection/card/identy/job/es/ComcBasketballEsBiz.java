@@ -1,11 +1,10 @@
-package collection.card.identy.es;
+package collection.card.identy.job.es;
 
-import collection.card.identy.helper.JacksonUtil;
-import collection.card.identy.model.ComcBasketballDTO;
+import collection.card.identy.job.helper.JacksonUtil;
+import collection.card.identy.job.model.ComcBasketballDTO;
 import org.elasticsearch.action.index.IndexRequest;
 import org.elasticsearch.action.support.WriteRequest;
 import org.elasticsearch.action.update.UpdateRequest;
-import org.elasticsearch.action.update.UpdateResponse;
 import org.elasticsearch.common.xcontent.XContentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

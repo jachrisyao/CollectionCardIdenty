@@ -1,4 +1,4 @@
-package collection.card.identy.model;
+package collection.card.identy.job.model;
 
 public class ComcBasketballDTO {
     private String id;

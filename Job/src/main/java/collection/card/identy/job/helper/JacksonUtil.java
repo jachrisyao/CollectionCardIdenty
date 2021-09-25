@@ -1,4 +1,4 @@
-package collection.card.identy.helper;
+package collection.card.identy.job.helper;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonProcessingException;

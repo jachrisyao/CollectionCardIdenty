@@ -1,6 +1,6 @@
-package collection.card.identy.crawler.comcBasketball;
+package collection.card.identy.job.crawler.comcBasketball;
 
-import collection.card.identy.es.ComcBasketballEsBiz;
+import collection.card.identy.job.es.ComcBasketballEsBiz;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

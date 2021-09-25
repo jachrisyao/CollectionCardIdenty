@@ -1,4 +1,4 @@
-package collection.card.identy.crawler.comcBasketball;
+package collection.card.identy.job.crawler.comcBasketball;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;

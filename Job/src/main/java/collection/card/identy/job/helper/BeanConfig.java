@@ -1,4 +1,4 @@
-package collection.card.identy.helper;
+package collection.card.identy.job.helper;
 
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
