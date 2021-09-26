@@ -13,16 +13,13 @@ import java.util.Map;
 
 @Component
 public class JobPipeline implements Pipeline {
-    protected static Logger logger = LoggerFactory.getLogger(JobPipeline.class);
     @Autowired
     private ComcBasketballEsBiz comcBasketballEsBiz;
-    @Autowired
-    private JobPageProcessor jobPageProcessor;
 
     @Override
     public void process(ResultItems resultItems, Task task) {
         //非详情页不处理
-        if (!jobPageProcessor.isDetailUrl(resultItems.getRequest().getUrl())) {
+        if (!UrlHandler.isDetailUrl(resultItems.getRequest().getUrl())) {
             System.out.println("get page: " + resultItems.getRequest().getUrl());
             return;
         }
