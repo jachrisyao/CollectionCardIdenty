@@ -1,6 +1,7 @@
 package collection.card.identy.job.es;
 
 import collection.card.identy.job.helper.JacksonUtil;
+import collection.card.identy.job.helper.MD5Helper;
 import collection.card.identy.job.model.ComcBasketballDTO;
 import collection.card.identy.job.model.UrlResponseWrapper;
 import org.elasticsearch.action.index.IndexRequest;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ComcBasketballEsBiz {
@@ -29,12 +31,13 @@ public class ComcBasketballEsBiz {
 
     public void update(String url, String title, String frontImgUrl, String backImgUrl, String price) {
         ComcBasketballDTO dto = new ComcBasketballDTO();
+        dto.setId(MD5Helper.GenerateMd5Hash(url));
         dto.setUrl(url);
         dto.setTitle(title);
         dto.setFrontImgUrl(frontImgUrl);
         dto.setBackImgUrl(backImgUrl);
         dto.setPrice(price);
-        UpdateRequest request = buildUpdateRequest(url, dto);
+        UpdateRequest request = buildUpdateRequest(dto);
         try {
             esClient.update(request);
         } catch (IOException e) {
@@ -42,24 +45,25 @@ public class ComcBasketballEsBiz {
         }
     }
 
-    private UpdateRequest buildUpdateRequest(String id, ComcBasketballDTO dto) {
+    private UpdateRequest buildUpdateRequest(ComcBasketballDTO dto) {
         IndexRequest request = new IndexRequest(indexName);
         String source = JacksonUtil.toJson(dto);
         request.setRefreshPolicy(WriteRequest.RefreshPolicy.WAIT_UNTIL);
-        request.id(id);
+        request.id(dto.getId());
         request.source(source, XContentType.JSON);
-        UpdateRequest updateRequest = new UpdateRequest(indexName, id);
+        UpdateRequest updateRequest = new UpdateRequest(indexName, dto.getId());
         updateRequest.doc(source, XContentType.JSON).upsert(request);
         updateRequest.retryOnConflict(4);
         return updateRequest;
     }
 
     public UrlResponseWrapper queryUrls(List<String> urlList) {
+        List<String> idList = urlList.stream().map(MD5Helper::GenerateMd5Hash).collect(Collectors.toList());
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.indices(indexName);
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        builder.must(QueryBuilders.termsQuery("url", urlList));
+        builder.must(QueryBuilders.termsQuery("id", idList));
         sourceBuilder.query(builder);
         String[] includes = new String[]{"url"};
         sourceBuilder.fetchSource(includes, new String[]{});

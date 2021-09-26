@@ -23,7 +23,6 @@ public class JobPipeline implements Pipeline {
     public void process(ResultItems resultItems, Task task) {
         //非详情页不处理
         if (!jobPageProcessor.isDetailUrl(resultItems.getRequest().getUrl())) {
-            logger.info("get page: " + resultItems.getRequest().getUrl());
             System.out.println("get page: " + resultItems.getRequest().getUrl());
             return;
         }

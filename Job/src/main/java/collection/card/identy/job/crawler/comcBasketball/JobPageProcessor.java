@@ -54,9 +54,12 @@ public class JobPageProcessor implements PageProcessor {
         else {
             //详情页链接
             List<String> links = page.getHtml().$(".imgPanel").links().all();
+
+            //已下载的跳过
             UrlResponseWrapper urlResponseWrapper = comcBasketballEsBiz.queryUrls(links);
             if (urlResponseWrapper != null && urlResponseWrapper.getUrlList() != null)
                 links = links.stream().filter(x -> !urlResponseWrapper.getUrlList().contains(x)).collect(Collectors.toList());
+
             //下一页链接
             String nplinks = page.getHtml().$("#ctl00_ContentPlaceHolder1_cmdNext_Bottom", "href").toString();
             links.add(nplinks);

@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration>
+    <properties>
+        <property name="LOG_PATH">/www/wwwroot/collectors/logs</property>
+    </properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger %n%msg%n%n"/>
         </Console>
-        <File name="ErrorFileLog" immediateFlush="false" append="true" fileName="D:/Coding/logs/error.log">
-            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
-        </File>
+        <RollingFile name="ErrorFileLog" immediateFlush="false" append="true" fileName="${LOG_PATH}/error.log"
+                     filePattern="${LOG_PATH}/$${date:yyyy-MM}/error-%d{yyyy-MM-dd}-%i.log">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger %n%msg%n%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+        </RollingFile>
         <Async name="ErrorAsync">
             <AppenderRef ref="ErrorFileLog" level="WARN"/>
         </Async>
