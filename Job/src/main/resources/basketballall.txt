@@ -33,7 +33,6 @@
 "https://www.comc.com/Cards/Basketball/2020-21_Panini_Spectra,sb,vDetails,i100",
 "https://www.comc.com/Cards/Basketball/2020-21_Panini_Sticker__Card_Collection,sb,vDetails,i100",
 "https://www.comc.com/Cards/Basketball/2020_Upper_Deck_Holiday_Card,sb,vDetails,i100",
------------------------bookmark-----------------------
 "https://www.comc.com/Cards/Basketball/2011,sb,vDetails,i100",
 "https://www.comc.com/Cards/Basketball/2019-20_Adrenalyn_XL,sb,vDetails,i100",
 "https://www.comc.com/Cards/Basketball/2019-20_Donruss_Elite,sb,vDetails,i100",

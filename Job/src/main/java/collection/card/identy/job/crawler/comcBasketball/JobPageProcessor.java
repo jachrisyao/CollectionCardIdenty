@@ -23,57 +23,18 @@ public class JobPageProcessor implements PageProcessor {
     @Autowired
     private ComcBasketballEsBiz comcBasketballEsBiz;
 
-    @Scheduled(initialDelay = 0, fixedDelay = 23 * 60 * 60 * 1000)
+    @Scheduled(initialDelay = 0, fixedDelay = 10000)
     public void run() {
         logger.warn("=============== spider start ===============");
-        Spider.create(this)
-                .addPipeline(jobPipeline)
-                .addUrl("https://www.comc.com/Cards/Basketball/1980s,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/1970s,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/1960s,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/1950s,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/1940s,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2021,sb,vDetails,i100")
-                .thread(10)
-                .run();
-        Spider.create(this)
-                .addPipeline(jobPipeline)
-                .addUrl("https://www.comc.com/Cards/Basketball/2020-21_Donruss_Elite,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020_Leaf_Best_of_Basketball,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Absolute_Memorabilia,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Certified,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Clearly_Donruss,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Contenders,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Contenders_Draft_Picks,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Court_Kings,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Crown_Royale,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Donruss,sb,vDetails,i100")
-                .thread(10)
-                .run();
-
-        Spider.create(this)
-                .addPipeline(jobPipeline)
-                .addUrl("https://www.comc.com/Cards/Basketball/2020-21_Panini_Flawless_Collegiate,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Immaculate_Collection_Collegiate,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Impeccable,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Instant,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020_Panini_Instant_Draft_Night,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_National_Treasures,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_National_Treasures_Collegiate,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_NBA_Hoops,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Noir,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Origins,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Player_of_the_Day,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Prizm,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Prizm_Draft_Picks,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020_Panini_Prizm_WNBA,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Revolution,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Select,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Spectra,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020-21_Panini_Sticker__Card_Collection,sb,vDetails,i100",
-                        "https://www.comc.com/Cards/Basketball/2020_Upper_Deck_Holiday_Card,sb,vDetails,i100")
-                .thread(10)
-                .run();
+        for (String pageUrl : UrlHandler.getAllUrls()) {
+            logger.warn("【Page Start】" + pageUrl);
+            Spider.create(this)
+                    .addPipeline(jobPipeline)
+                    .addUrl(pageUrl)
+                    .thread(10)
+                    .run();
+            logger.warn("【Page Finish】" + pageUrl);
+        }
         logger.warn("=============== spider end ===============");
     }
 
