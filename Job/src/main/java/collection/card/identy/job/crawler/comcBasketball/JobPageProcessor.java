@@ -23,6 +23,8 @@ public class JobPageProcessor implements PageProcessor {
     @Autowired
     private ComcBasketballEsBiz comcBasketballEsBiz;
 
+    //initialDelay=延时启动时间
+    //fixedDelay=跑完后过多久开始跑下一次
     @Scheduled(initialDelay = 0, fixedDelay = 10000)
     public void run() {
         logger.warn("=============== spider start ===============");
@@ -33,7 +35,7 @@ public class JobPageProcessor implements PageProcessor {
                     .addUrl(pageUrl)
                     .thread(10)
                     .run();
-            logger.warn("【Page Finish】" + pageUrl);
+            logger.warn("------" + pageUrl + "------");
         }
         logger.warn("=============== spider end ===============");
     }
