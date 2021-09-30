@@ -12,14 +12,11 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ocrService {
-    private final static String secretId = "AKIDrWv4wXrvhCQO6XhaDagV4MN7bokQpyqR";
-    private final static String secretKey = "LQFn44nGSN2RZQ1LOAgvta0A3f04rNcb";
-
     public TextDetectionEn[] getKeyWords(String imageUrl) {
         try {
             // 实例化一个认证对象，入参需要传入腾讯云账户secretId，secretKey,此处还需注意密钥对的保密
             // 密钥可前往https://console.cloud.tencent.com/cam/capi网站进行获取
-            Credential cred = new Credential(secretId, secretKey);
+            Credential cred = new Credential("", "");
             // 实例化一个http选项，可选的，没有特殊需求可以跳过
             HttpProfile httpProfile = new HttpProfile();
             httpProfile.setEndpoint("ocr.tencentcloudapi.com");
