@@ -1,5 +1,7 @@
 package collection.card.identy.api.similarity;
 
+import org.springframework.stereotype.Component;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.color.ColorSpace;
@@ -15,6 +17,7 @@ import java.net.URL;
  * Author: Elliot Shepherd (elliot@jarofworms.com
  * Based On: http://www.hackerfactor.com/blog/index.php?/archives/432-Looks-Like-It.html
  */
+@Component
 public class ImagePHash {
 
     private int size = 32;

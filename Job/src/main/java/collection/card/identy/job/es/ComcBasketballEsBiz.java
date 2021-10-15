@@ -41,7 +41,7 @@ public class ComcBasketballEsBiz {
         try {
             esClient.update(request);
         } catch (IOException e) {
-            logger.error("es update[url='" + url + "']", e);
+            logger.error("collection.card.identy.api.es update[url='" + url + "']", e);
         }
     }
 
@@ -73,7 +73,7 @@ public class ComcBasketballEsBiz {
             SearchResponse searchResponse = esClient.search(searchRequest);
             return new UrlResponseWrapper(searchResponse.getHits());
         } catch (IOException e) {
-            logger.error("es queryUrls", e);
+            logger.error("collection.card.identy.api.es queryUrls", e);
         }
         return null;
     }

@@ -1,5 +1,7 @@
 package collection.card.identy.api.similarity;
 
+import org.springframework.stereotype.Component;
+
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -9,6 +11,7 @@ import java.net.URL;
 /**
  * 相似图片识别（直方图）
  */
+@Component
 public class ImageHistogram {
     private int redBins;
     private int greenBins;

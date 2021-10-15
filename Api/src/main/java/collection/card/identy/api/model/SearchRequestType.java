@@ -1,6 +1,6 @@
 package collection.card.identy.api.model;
 
-public class CardPhotoModel {
+public class SearchRequestType {
     private String frontUrl;
     private String backUrl;
 
