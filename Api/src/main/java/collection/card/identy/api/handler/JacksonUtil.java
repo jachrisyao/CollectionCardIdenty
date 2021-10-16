@@ -2,20 +2,17 @@ package collection.card.identy.api.handler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.StringUtils;
 
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class JacksonUtil {
-    protected static Logger logger = LoggerFactory.getLogger(JacksonUtil.class);
-
     private static final ObjectMapper objectMapper = new ObjectMapper();
+    protected static Logger logger = LoggerFactory.getLogger(JacksonUtil.class);
 
     static {
         //对象的所有字段全部列入
@@ -57,7 +54,33 @@ public class JacksonUtil {
                         : objectMapper.readValue(json, clazz);
             }
         } catch (Exception e) {
-            logger.error("json To obj is error", e);
+            logger.error("parseFromJson", e);
+        }
+        return null;
+    }
+
+    public static <T> String toJSONString(T obj) {
+        if (obj == null) {
+            return null;
+        }
+
+        try {
+            return obj instanceof String ? (String) obj : objectMapper.writeValueAsString(obj);
+        } catch (Exception e) {
+            logger.error("toJSONString", e);
+        }
+        return null;
+    }
+
+    public static <T> List<T> parseListFromJson(String json, Class<?>... elements) {
+        JavaType javaType = objectMapper.getTypeFactory().constructParametricType(List.class, elements);
+
+        try {
+            if (!StringUtils.isEmpty(json)) {
+                return objectMapper.readValue(json, javaType);
+            }
+        } catch (Exception e) {
+            logger.error("parseListFromJson", e);
         }
         return null;
     }

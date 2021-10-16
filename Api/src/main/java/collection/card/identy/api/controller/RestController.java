@@ -2,11 +2,12 @@ package collection.card.identy.api.controller;
 
 import collection.card.identy.api.handler.JacksonUtil;
 import collection.card.identy.api.handler.RequestHandler;
+import collection.card.identy.api.model.OcrSearchRequestType;
+import collection.card.identy.api.model.OcrSearchResponseType;
 import collection.card.identy.api.model.SearchRequestType;
 import collection.card.identy.api.model.SearchResponseType;
+import collection.card.identy.api.service.OcrSearchHandler;
 import collection.card.identy.api.service.SearchHandler;
-import collection.card.identy.api.similarity.ImageHistogram;
-import collection.card.identy.api.similarity.ImagePHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.URL;
 import java.util.Date;
 import java.util.Map;
 
@@ -23,6 +23,8 @@ import java.util.Map;
 public class RestController {
     @Autowired
     private SearchHandler searchHandler;
+    @Autowired
+    private OcrSearchHandler ocrSearchHandler;
 
     @GetMapping("/")
     public String welcome(Map<String, Object> model) throws Exception {
@@ -42,5 +44,12 @@ public class RestController {
     @RequestMapping(value = "/test", method = RequestMethod.POST, produces = "application/json")
     public String test(HttpServletRequest request) throws Exception {
         return "1111";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/ocrSearch", method = RequestMethod.POST, produces = "application/json")
+    public OcrSearchResponseType ocrSearch(HttpServletRequest request) throws Exception {
+        String requestJson = RequestHandler.getRequestPayload(request);
+        return ocrSearchHandler.handler(JacksonUtil.parseFromJson(requestJson, OcrSearchRequestType.class));
     }
 }

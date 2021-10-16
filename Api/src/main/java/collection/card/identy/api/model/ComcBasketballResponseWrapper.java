@@ -10,7 +10,16 @@ import java.util.Map;
 
 public class ComcBasketballResponseWrapper {
     private Long count = 0L;
+    private String scrollId;
     private List<ComcBasketballDTO> list = new ArrayList<>();
+
+    public String getScrollId() {
+        return scrollId;
+    }
+
+    public void setScrollId(String scrollId) {
+        this.scrollId = scrollId;
+    }
 
     public ComcBasketballResponseWrapper(SearchHits hits) {
         if (hits == null) {

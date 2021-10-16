@@ -1,7 +1,6 @@
 package collection.card.identy.api.es;
 
-import org.elasticsearch.action.search.SearchRequest;
-import org.elasticsearch.action.search.SearchResponse;
+import org.elasticsearch.action.search.*;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,5 +15,13 @@ public class EsClient {
 
     public SearchResponse search(SearchRequest searchRequest) throws IOException {
         return restHighLevelClient.search(searchRequest, RequestOptions.DEFAULT);
+    }
+
+    public SearchResponse scroll(SearchScrollRequest searchScrollRequest) throws IOException {
+        return restHighLevelClient.scroll(searchScrollRequest, RequestOptions.DEFAULT);
+    }
+
+    public ClearScrollResponse clearScroll(ClearScrollRequest clearScrollRequest) throws IOException {
+        return restHighLevelClient.clearScroll(clearScrollRequest, RequestOptions.DEFAULT);
     }
 }
