@@ -3,6 +3,8 @@ package collection.card.identy.api.es;
 import org.elasticsearch.action.search.*;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.RestHighLevelClient;
+import org.elasticsearch.client.core.CountRequest;
+import org.elasticsearch.client.core.CountResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,5 +25,9 @@ public class EsClient {
 
     public ClearScrollResponse clearScroll(ClearScrollRequest clearScrollRequest) throws IOException {
         return restHighLevelClient.clearScroll(clearScrollRequest, RequestOptions.DEFAULT);
+    }
+
+    public CountResponse count(CountRequest request) throws IOException {
+        return restHighLevelClient.count(request, RequestOptions.DEFAULT);
     }
 }
