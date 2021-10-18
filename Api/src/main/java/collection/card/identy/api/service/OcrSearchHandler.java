@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class OcrSearchHandler {
-    private final String seriesListJSON = "[\"23KT\",\"5\",\"7-ELEVEN\",\"7-UP\",\"ACC\",\"ACMI\",\"AMA\",\"APBA\",\"AT&T\",\"ABSOLUTE\",\"ACTION\",\"ADOLESCENT\",\"ADRENALYN\",\"ALL\",\"ANONYMOUS\",\"ARIZONA\",\"AUBURN\",\"AVIA\",\"BASF\",\"BBM\",\"BC\",\"BAIO\",\"BALLPARK\",\"BANK\",\"BASKETBALL\",\"BAY\",\"BAZOOKA\",\"BEST\",\"BIJAN\",\"BIMBO\",\"BLEACHERS\",\"BOB\",\"BOLLYCAO\",\"BOSTON\",\"BOWMAN\",\"BOWMAN'S\",\"BRAVO\",\"BRIGHAM\",\"BUGLES\",\"CAO\",\"CBA\",\"CACHE\",\"CALGARY\",\"CARL'S\",\"CARNATION\",\"CAROLINA\",\"CARVEL\",\"CERTIFIED\",\"CHINA\",\"CHINESE\",\"CINCINNATI\",\"CIRCLE\",\"CLASSIC\",\"CLEO\",\"COCA-COLA\",\"COCA-COLA/WPLO\",\"COLLECT-A-CARD\",\"COLLECTOR'S\",\"COLLEGIATE\",\"COMIC\",\"COMMONWEALTH\",\"CONVERSE\",\"COURT\",\"COURTSIDE\",\"CROWN\",\"DEPAUL\",\"DENNY'S\",\"DENVER\",\"DETROIT\",\"DIAMOND\",\"DONRUSS\",\"DRUG\",\"E-X\",\"E-XL\",\"EX\",\"EX2000\",\"EX2001\",\"EDGE\",\"EL\",\"ELITE\",\"ENTENMANN'S\",\"EQUAL\",\"EXPRESS\",\"EXQUISITE\",\"FARMER\",\"FATHEAD\",\"FELLOWSHIP\",\"FLAIR\",\"FLEER\",\"FLEER/SKYBOX\",\"FOODLAND\",\"FOODTOWN\",\"FOURNIER\",\"FRANZ\",\"FRITO\",\"FRONT\",\"FUTERA\",\"GE\",\"GENUINE\",\"GEORGETOWN\",\"GEORGIA\",\"GIANT\",\"GIGANTES\",\"GO\",\"GONZAGA\",\"GOODWILL\",\"HALL\",\"HANDYMAN\",\"HANES\",\"HASBRO\",\"HERO\",\"HIGH\",\"HIGHLAND\",\"HOOPS\",\"IBM\",\"ICEE\",\"ILLINOIS\",\"INDIANA\",\"INKREDIBLE\",\"IOWA\",\"ITAL\",\"JMS\",\"JACK\",\"KOS/JEZ\",\"KANSAS\",\"KAYO\",\"KELLOGG'S\",\"KENNER\",\"KENTUCKY\",\"KING'S\",\"KIWANIS\",\"KODAK\",\"KRAFT\",\"LDDS\",\"LSU\",\"LEAF\",\"LEGENDARY\",\"LIBERTY\",\"LIME\",\"LIMITED\",\"LITTLE\",\"LUXURY\",\"MSA\",\"MARYLAND\",\"MCDONALD'S\",\"MEMPHIS\",\"MERCHANTE\",\"METAL\",\"MIAMI\",\"MICHAEL\",\"MICHIGAN\",\"MILLENNIUM\",\"MINNESOTA\",\"MONEY\",\"MOTION\",\"MULTIAD\",\"MURRAY\",\"NABC\",\"NBA\",\"NATIONAL\",\"NEBRASKA\",\"NEW\",\"NIKE\",\"NORTHWESTERN\",\"NORWEST\",\"NOTRE\",\"O-PEE-CHEE\",\"OHIO\",\"OKLAHOMA\",\"OMNI\",\"OREGON\",\"ORLANDO\",\"PACIFIC\",\"PANCHERO'S\",\"PANINI\",\"PAPER\",\"PARKSIDE\",\"PAST\",\"PEPSI\",\"PEPSI-COLA\",\"PEPSI/7-ELEVEN\",\"PHIPPS\",\"PHOENIX\",\"PICTURE\",\"PINNACLE\",\"PIZZA\",\"PLAYOFF\",\"PORTLAND\",\"PRESS\",\"PRESTIGE\",\"PRIME\",\"PRISM/JEWEL\",\"PRO\",\"PROCARDS\",\"PURDUE\",\"QDOBA/CHILDREN'S\",\"REEBOK\",\"REFLECTIONS\",\"RITTENHOUSE\",\"ROOKIES\",\"ROOX\",\"SAGE\",\"SP\",\"SPX\",\"SAFEWAY\",\"SAGE\",\"SAINT\",\"SAN\",\"SCHOLASTIC\",\"SCHOOL\",\"SCORE\",\"SEATTLE\",\"SERIOUS\",\"SERVICE\",\"SHAQUILLE\",\"SHELBY\",\"SIGNATURE\",\"SKYBOX\",\"SKYBOX\",\"SMOKEY\",\"SMOKEY'S\",\"SOUTHERN\",\"SPORTS\",\"SPREE\",\"SPRITE\",\"STANFORD\",\"STAR\",\"STARTING\",\"STICKITO\",\"SUPER\",\"SYRACUSE\",\"TCMA\",\"TACO\",\"TARGET\",\"TED\",\"TENNESSEE\",\"THE\",\"TIMELESS\",\"TOP\",\"TOPPS\",\"TOPPS/UPPER\",\"TOTALSPORT\",\"TOTALLY\",\"TYSON\",\"UD\",\"UD3\",\"UNLV\",\"USC\",\"ULTIMATE\",\"UNIVERSITY\",\"UNO\",\"UNOCAL\",\"UPPER\",\"VANCOUVER\",\"VICTORY\",\"VIRGINIA\",\"VISIONS\",\"WNBA\",\"WAKE\",\"WEBER\",\"WENDY'S\",\"WHEELS\",\"WICHITA\",\"WILD\",\"WILDCAT\",\"WONDER\",\"WORTH\",\"WR\",\"WRIGHT\",\"Z-FORCE\",\"ETOPPS\"]";
+    private final String seriesListJSON = "[\"23KT\",\"7-ELEVEN\",\"7-UP\",\"ABL\",\"ACC\",\"ACMI\",\"AMA\",\"APBA\",\"AT&T\",\"ABSOLUTE\",\"ACTION\",\"AD\",\"ADOLESCENT\",\"ADRENALYN\",\"AFICIONADO\",\"AKEEM\",\"ALBUM\",\"ALL\",\"ALL-ROOKIE\",\"ALL-STAR\",\"ANONYMOUS\",\"ANTONIO\",\"APEX\",\"ARCHIVES\",\"AREA\",\"ARENA\",\"ARIZONA\",\"ARKANSAS\",\"ARTICLE\",\"ASCENSION\",\"ASES\",\"ATLANTA\",\"AUBURN\",\"AUTHENTIC\",\"AUTHENTIX\",\"AUTHORITY\",\"AUTOGRAPHED\",\"AUTOGRAPHICS\",\"AVANT\",\"AVIA\",\"B-LEAGUE\",\"BASF\",\"BBM\",\"BC\",\"BIG3\",\"BAIO\",\"BALLPARK\",\"BANK\",\"BANK/COCA-COLA\",\"BASKET\",\"BASKETBALL\",\"BASKETCROMOS\",\"BAY\",\"BAZOOKA\",\"BEAR\",\"BEARCATS\",\"BECK\",\"BEHIND\",\"BELL\",\"BEST\",\"BIG\",\"BIJAN\",\"BIMBO\",\"BLACK\",\"BLEACHERS\",\"BLUE\",\"BOARD\",\"BOB\",\"BOILERMAKERS\",\"BOLLYCAO\",\"BOSTON\",\"BOWMAN\",\"BOWMAN'S\",\"BOX\",\"BRAVO\",\"BREAD\",\"BREYERS\",\"BRIGHAM\",\"BRILLIANCE\",\"BRILLIANTS\",\"BUGLES\",\"BULLDOGS\",\"BUTTONS\",\"CAO\",\"CBA\",\"CACHE\",\"CALGARY\",\"CANASTA\",\"CARD\",\"CARDINAL\",\"CARDS\",\"CAREUNIT\",\"CARL'S\",\"CARNATION\",\"CAROLINA\",\"CARVEL\",\"CAVALIERS\",\"CENTURY\",\"CERTIFIED\",\"CHAMPIONS\",\"CHAMPIONSHIP\",\"CHARLES\",\"CHARLOTTE\",\"CHICAGO\",\"CHINA\",\"CHINESE\",\"CHROME\",\"CHRONICLES\",\"CINCINNATI\",\"CIRCLE\",\"CITY\",\"CLASSIC\",\"CLASSICS\",\"CLEAR\",\"CLEARLY\",\"CLEO\",\"CLEVELAND\",\"CLYDE\",\"CO-SIGNERS\",\"COCA-COLA\",\"COCA-COLA/WPLO\",\"COCOA\",\"COLLECT-A-CARD\",\"COLLECTION\",\"COLLECTION/COCA-COLA\",\"COLLECTOR'S\",\"COLLECTORS\",\"COLLEGE\",\"COLLEGIATE\",\"COMIC\",\"COMMONWEALTH\",\"COMPLETE\",\"CONTEMPORARY\",\"CONTENDERS\",\"CONVENTION\",\"CONVERSE\",\"CORNERSTONES\",\"CORNHUSKERS\",\"COUNTY\",\"COURT\",\"COURTSIDE\",\"COUSY\",\"CREEK\",\"CROWN\",\"CRUNCH\",\"CRUSADE\",\"DALLAS\",\"DAME\",\"DAVID\",\"DAY\",\"DEPAUL\",\"DECK\",\"DECKS\",\"DEE\",\"DENNY'S\",\"DENVER\",\"DERRICK\",\"DETROIT\",\"DIAMOND\",\"DISCS\",\"DISPLAY\",\"DOMINION\",\"DOMINIQUE\",\"DONRUSS\",\"DRAFT\",\"DRUG\",\"DUNK!\",\"DUNKIN'\",\"E-X\",\"E-XL\",\"EX\",\"EX2000\",\"EX2001\",\"EAGLE\",\"ECHELON\",\"EDGE\",\"EL\",\"ELEVATION\",\"ELITE\",\"EMBOSSED\",\"EMINENCE\",\"EMOTION\",\"EMPORIUM\",\"ENCASED\",\"ENTENMANN'S\",\"EQUAL\",\"ESSENTIALS\",\"ESTRELLAS\",\"ETERNAL\",\"EUROPEAN\",\"EXCALIBUR\",\"EXCHANGE\",\"EXCLUSIVE\",\"EXPRESS\",\"EXQUISITE\",\"FAMOUS\",\"FARMER\",\"FAST\",\"FATHEAD\",\"FATHER'S\",\"FELLOWSHIP\",\"FIGHTING\",\"FINAL\",\"FINALS\",\"FINEST\",\"FINITE\",\"FIRST\",\"FLAIR\",\"FLASHBACKS\",\"FLAWLESS\",\"FLEER\",\"FLEER/SKYBOX\",\"FOCUS\",\"FOILS\",\"FOODLAND\",\"FOODS\",\"FOODTOWN\",\"FORCE\",\"FOREST\",\"FOUNDATION\",\"FOURNIER\",\"FRAGRANCES\",\"FRANZ\",\"FRESH\",\"FRITO\",\"FRONT\",\"FROSTED\",\"FULL\",\"FUTERA\",\"FUTURES\",\"GE\",\"GALA\",\"GALLERY\",\"GAME\",\"GENUINE\",\"GEORGETOWN\",\"GEORGIA\",\"GIANT\",\"GIGANTES\",\"GLASS\",\"GLOBE\",\"GO\",\"GOLD\",\"GOLDEN\",\"GONZAGA\",\"GOODWILL\",\"GRAND\",\"GREATEST\",\"GREATS\",\"GRIZZLIES\",\"GRIZZLIES/TORONTO\",\"HALL\",\"HALLMARK\",\"HANDYMAN\",\"HANES\",\"HARDWOOD\",\"HARLEM\",\"HASBRO\",\"HAWAII\",\"HAWKEYES\",\"HEAT\",\"HERITAGE\",\"HERO\",\"HIGH\",\"HIGHLAND\",\"HIT\",\"HOME\",\"HOOPS\",\"HOSPITAL\",\"HOT\",\"HOYAS\",\"HUT\",\"IBM\",\"IHSA\",\"ICEE\",\"ILLINOIS\",\"ILLUSIONS\",\"ILLUSTRATED\",\"IMAGES\",\"IMMACULATE\",\"IMPACT\",\"IMPECCABLE\",\"INDIANA\",\"INDUSTRY\",\"INFINITE\",\"INKREDIBLE\",\"INNOVATION\",\"INSIDE\",\"INSTANT\",\"INTERACTIVE\",\"INTRIGUE\",\"IOWA\",\"ISIAH\",\"ITAL\",\"JMS\",\"JACK\",\"JAM\",\"JAMES\",\"JAYHAWKS\",\"JERSEY\",\"JOHN\",\"JORDAN\",\"JR.\",\"JULIUS\",\"JUMBO\",\"K\",\"KOS/JEZ\",\"KANSAS\",\"KARL\",\"KAYO\",\"KAZAAM\",\"KELLOGG'S\",\"KENNER\",\"KENTUCKY\",\"KEVIN\",\"KID'S\",\"KING'S\",\"KINGS\",\"KIWANIS\",\"KOBE\",\"KODAK\",\"KRAFT\",\"KUDOS\",\"L.E.\",\"LDDS\",\"LNB\",\"LSU\",\"LADY\",\"LAMAR\",\"LANCASTER\",\"LARRY\",\"LAY\",\"LEAF\",\"LEBRON\",\"LEGACY\",\"LEGENDARY\",\"LEGENDS\",\"LETTERMAN\",\"LIBERTY\",\"LIFEBUOY\",\"LIME\",\"LIMITED\",\"LINE\",\"LINEUP\",\"LITE\",\"LITTLE\",\"LOS\",\"LUCCA\",\"LUXE\",\"LUXURY\",\"MSA\",\"MAGIC\",\"MAGNETS\",\"MAGS\",\"MAJEUR\",\"MARK\",\"MARQUEE\",\"MARYLAND\",\"MATH\",\"MAXIMUM\",\"MCDONALD'S\",\"MEDALLIONS\",\"MEMORABILIA\",\"MEMPHIS\",\"MERCHANTE\",\"METAL\",\"MEXICO\",\"MIAMI\",\"MICHAEL\",\"MICHIGAN\",\"MILLENNIUM\",\"MILWAUKEE\",\"MINI\",\"MINNESOTA\",\"MINT\",\"MISSISSIPPI\",\"MISSOURI\",\"MOLTEN\",\"MOMENTUM\",\"MONEY\",\"MOSAIC\",\"MOTION\",\"MOUNTAIN\",\"MUFLON\",\"MULTIAD\",\"MUNDO\",\"MURRAY\",\"MYSTIQUE\",\"N.C.\",\"NABC\",\"NBA\",\"NBL\",\"NATIONAL\",\"NEBRASKA\",\"NEW\",\"NEWS\",\"NEWS/HANDY\",\"NIKE\",\"NIKETOWN\",\"NOIR\",\"NORTH\",\"NORTHWESTERN\",\"NORWEST\",\"NOTRE\",\"NOVA\",\"NUGGETS\",\"O'NEAL\",\"O-PEE-CHEE\",\"OBSIDIAN\",\"OHIO\",\"OKLAHOMA\",\"OLD\",\"OMNI\",\"ONE\",\"OPULENCE\",\"ORANGEMEN\",\"OREGON\",\"ORIGINS\",\"ORLANDO\",\"PBA\",\"PACERS\",\"PACIFIC\",\"PACKED\",\"PANCHERO'S\",\"PANGOS\",\"PANINI\",\"PAPA\",\"PAPER\",\"PARAMOUNT\",\"PARKSIDE\",\"PASS\",\"PAST\",\"PATCHWORKS\",\"PATRICK\",\"PEPSI\",\"PEPSI-COLA\",\"PEPSI/7-ELEVEN\",\"PHILADELPHIA\",\"PHIPPS\",\"PHOENIX\",\"PHONE\",\"PICK-UP\",\"PICS\",\"PICTURE\",\"PINNACLE\",\"PISTONS\",\"PITT\",\"PITTSBURGH\",\"PIZZA\",\"PLATINUM\",\"PLAYER\",\"PLAYMAKERS\",\"PLAYOFF\",\"PORTLAND\",\"POSTCARD\",\"POWER\",\"PREFERRED\",\"PREMIER\",\"PREMIUM\",\"PRESS\",\"PRESTIGE\",\"PREVIEW\",\"PRIDE\",\"PRIME\",\"PRISM\",\"PRISM/JEWEL\",\"PRISTINE\",\"PRIVATE\",\"PRIZM\",\"PRO\",\"PROCARDS\",\"PROMO\",\"PROMOS\",\"PROVIDENCE\",\"PURDUE\",\"QDOBA/CHILDREN'S\",\"REAL\",\"REEBOK\",\"REFLECTIONS\",\"RELIC\",\"REPLAY\",\"REPUBLIC\",\"RESERVE\",\"RETRO\",\"REVOLUTION\",\"REWIND\",\"RITTENHOUSE\",\"ROCK\",\"ROOKIE\",\"ROOKIES\",\"ROOX\",\"ROW\",\"ROYALE\",\"RULERS\",\"RUNNIN'\",\"SAGE\",\"SP\",\"SPX\",\"SACRAMENTO\",\"SAFEWAY\",\"SAGE\",\"SAINT\",\"SAN\",\"SCHICK\",\"SCHOLASTIC\",\"SCHOOL\",\"SCORE\",\"SEARS\",\"SEASON\",\"SEATTLE\",\"SELECT\",\"SEQUENTIALLY\",\"SERIES\",\"SERIOUS\",\"SERVICE\",\"SHAMROCK\",\"SHAQ\",\"SHAQUILLE\",\"SHAWN\",\"SHELBY\",\"SHOEBOX\",\"SHOMA\",\"SHOP\",\"SHOWCASE\",\"SHOWDOWN\",\"SIGNATURE\",\"SIGNATURES\",\"SIGNINGS\",\"SILVER\",\"SKYBOX\",\"SKYBOX\",\"SLAM\",\"SMOKEY\",\"SMOKEY'S\",\"SOUTHERN\",\"SPACE\",\"SPECIAL\",\"SPECTRA\",\"SPORT\",\"SPORTS\",\"SPORTSCARDS\",\"SPREE\",\"SPRINT\",\"SPRITE\",\"SPRITE/MINYARD\",\"STADIUM\",\"STAMPS\",\"STANFORD\",\"STAR\",\"STARS\",\"STARTING\",\"STATE\",\"STATUS\",\"STELLAR\",\"STEP\",\"STERLING\",\"STICKER\",\"STICKERS\",\"STICKITO\",\"STUDIO\",\"SUN\",\"SUPER\",\"SUPERIOR\",\"SUPERSONICS\",\"SWEET\",\"SYRACUSE\",\"T-51\",\"TCMA\",\"TACO\",\"TARGET\",\"TEAM\",\"TECH\",\"TED\",\"TELECOM\",\"TEN\",\"TENNESSEE\",\"TERRAPINS\",\"TEXACO\",\"THE\",\"THREADS\",\"THROWBACKS\",\"THUNDER\",\"TICKET\",\"TIGERS\",\"TIM\",\"TIMBERWOLVES\",\"TIME\",\"TIMELESS\",\"TIP-OFF\",\"TIPOFF\",\"TITANIUM\",\"TOM\",\"TONY'S\",\"TOP\",\"TOPPS\",\"TOPPS/UPPER\",\"TOTAL\",\"TOTALSPORT\",\"TOTALLY\",\"TOURNAMENT\",\"TRADEABLES\",\"TRADEMARK\",\"TRADITION\",\"TRAILBLAZERS\",\"TREASURES\",\"TREASURY\",\"TRIPLE\",\"TROJANS\",\"TRUMPS\",\"TURKEY\",\"TYSON\",\"UD\",\"UD3\",\"UNLV\",\"USA\",\"USC\",\"ULTIMATE\",\"ULTRA\",\"UNIVERSE\",\"UNIVERSITY\",\"UNO\",\"UNOCAL\",\"UPDATE\",\"UPPER\",\"UTAH\",\"VANCOUVER\",\"VANGUARD\",\"VICTORY\",\"VINCENT-SAINT\",\"VIRGINIA\",\"VISIONS\",\"VOLUNTEERS\",\"WNBA\",\"WAKE\",\"WEBER\",\"WENDY'S\",\"WHEATIES\",\"WHEELS\",\"WICHITA\",\"WILD\",\"WILDCAT\",\"WILDCATS\",\"WILLIAMS\",\"WOLVERINES\",\"WONDER\",\"WORLDCOM\",\"WORTH\",\"WR\",\"WRAPPER\",\"WRIGHT\",\"XL\",\"XPECTATIONS\",\"YOGUR\",\"YOUNG\",\"Z\",\"Z-FORCE\",\"ZALGIRIS\",\"ADIDAS\",\"DEL\",\"ETOPPS\"]";
     @Autowired
     private OcrService ocrService;
     @Autowired
@@ -43,31 +43,27 @@ public class OcrSearchHandler {
         //searchAll();
         TextDetectionEn[] frontKeyWords = ocrService.getKeyWords(request.getFrontUrl());
         TextDetectionEn[] backKeyWords = ocrService.getKeyWords(request.getBackUrl());
-        List<String> keywords = filterUsefulKeyWords(frontKeyWords, backKeyWords);
-        response.setKeywords(JacksonUtil.toJSONString(keywords));
-        response.setCardList(getList(keywords));
-        return response;
-    }
 
-    private List<String> filterUsefulKeyWords(TextDetectionEn[] frontKeyWords, TextDetectionEn[] backKeyWords) {
         List<String> keywords = new ArrayList<>();
-        List<String> yearKeyWords = getYearSeries(backKeyWords);
-        if (yearKeyWords != null)
-            keywords.addAll(yearKeyWords);
+        List<String> yearSeriesKeyWords = getYearSeries(backKeyWords);
+        if (yearSeriesKeyWords != null)
+            keywords.addAll(yearSeriesKeyWords);
         List<String> numberKeyWords = getNumber(backKeyWords);
         if (numberKeyWords != null)
             keywords.addAll(numberKeyWords);
         List<String> nameKeywords = getName(ArrayUtils.concat(frontKeyWords, backKeyWords, TextDetectionEn.class), keywords);
-        if (nameKeywords != null)
-            keywords.addAll(nameKeywords);
-        return keywords;
-        //return Arrays.asList("#83", "LUIS SCOLA", "2016-17 PANINI");
+        response.setCardList(getList(keywords, nameKeywords));
+
+        keywords.addAll(nameKeywords);
+        response.setKeywords(JacksonUtil.toJSONString(keywords));
+        return response;
     }
 
     private List<String> getYearSeries(TextDetectionEn[] array) {
         //必须满足的条件
         String yearPattern1 = "[1,2]{1}[0-9]{3}([^\"]+)";
         String yearPattern2 = "[1,2]{1}[0-9]{3}-[0-9]{2}([^\"]+)";
+        String yearPattern3 = "[1,2]{1}[0-9]{3}-[0-9]{4}([^\"]+)";
         List<TextDetectionEn> tempList = Arrays.stream(array).filter(x -> {
             //长度大于4
             if (x.getDetectedText().length() < 5)
@@ -81,12 +77,23 @@ public class OcrSearchHandler {
                 return false;
             //校验赛季格式
             if (x.getDetectedText().toCharArray()[4] == '-') {
+                String seriesPart = x.getDetectedText().split(" ")[0].split("-")[1];
+                if (seriesPart.length() != 2 && seriesPart.length() != 4)
+                    return false;
                 //校验格式，例如2015-16
-                if (!Pattern.matches(yearPattern2, x.getDetectedText()))
-                    return false;
-                //-后的年份为前面的+1
-                if (!String.valueOf(year + 1).substring(2).equals(x.getDetectedText().toCharArray()[5] + Character.toString(x.getDetectedText().toCharArray()[6])))
-                    return false;
+                if (seriesPart.length() == 2) {
+                    if (!Pattern.matches(yearPattern2, x.getDetectedText()))
+                        return false;
+                    //-后的年份为前面的+1
+                    if (!String.valueOf(year + 1).substring(2).equals(seriesPart))
+                        return false;
+                } else {
+                    if (!Pattern.matches(yearPattern3, x.getDetectedText()))
+                        return false;
+                    //-后的年份为前面的+1
+                    if (!String.valueOf(year + 1).equals(seriesPart))
+                        return false;
+                }
             }
             return true;
         }).collect(Collectors.toList());
@@ -116,12 +123,12 @@ public class OcrSearchHandler {
         String numberPattern2 = "^[0-9]{1,3}$";
         //必须满足的条件
         List<TextDetectionEn> tempList = Arrays.stream(array).filter(x -> {
-            //编号在边框上
+            //编号在顶上
             boolean isLeft = Arrays.stream(x.getPolygon()).allMatch(y -> y.getX() < xys.get(0));
             boolean isBottom = Arrays.stream(x.getPolygon()).allMatch(y -> y.getY() > xys.get(3));
             boolean isRight = Arrays.stream(x.getPolygon()).allMatch(y -> y.getX() > xys.get(2));
             boolean isTop = Arrays.stream(x.getPolygon()).allMatch(y -> y.getY() < xys.get(1));
-            if (!isLeft && !isRight && !isTop && !isBottom)
+            if (!isTop)
                 return false;
 
             //校验编号格式
@@ -139,7 +146,7 @@ public class OcrSearchHandler {
         //补充条件
         List<TextDetectionEn> tempList2 = tempList.stream().filter(x -> {
             //No开头或者#开头
-            if (x.getDetectedText().startsWith("No.") || x.getDetectedText().startsWith("NO.") || x.getDetectedText().startsWith("no.") || x.getDetectedText().startsWith("#"))
+            if (x.getDetectedText().contains("No.") || x.getDetectedText().contains("NO.") || x.getDetectedText().contains("no.") || x.getDetectedText().contains("#"))
                 return true;
             return false;
         }).collect(Collectors.toList());
@@ -178,7 +185,7 @@ public class OcrSearchHandler {
         if (tempList.size() == 1)
             return Collections.singletonList(tempList.get(0).getDetectedText());
         if (tempList.size() == 0)
-            return null;
+            return new ArrayList<>();
 
         //补充条件
         List<TextDetectionEn> tempList2 = tempList.stream().filter(x -> {
@@ -216,7 +223,7 @@ public class OcrSearchHandler {
                     maxY = coord.getY();
             }
         }
-        BigDecimal rate = new BigDecimal("0.1");
+        BigDecimal rate = new BigDecimal("0.15");
         BigDecimal maxXD = new BigDecimal(String.valueOf(maxX));
         BigDecimal minXD = new BigDecimal(String.valueOf(minX));
         BigDecimal maxYD = new BigDecimal(String.valueOf(maxY));
@@ -234,7 +241,7 @@ public class OcrSearchHandler {
     }
 
     private String formatNumber(String text) {
-        return text.replace("No.", "").replace("NO.", "").replace("no.", "").replace("#", "").trim();
+        return text.replace("CARD", "").replace("Card", "").replace("No.", "").replace("NO.", "").replace("no.", "").replace("#", "").trim();
     }
 
     private long queryCount(List<String> keywords) throws IOException {
@@ -251,13 +258,16 @@ public class OcrSearchHandler {
         return 0;
     }
 
-    private List<ComcBasketballDTO> getList(List<String> keywords) throws IOException {
+    private List<ComcBasketballDTO> getList(List<String> mustKeywords, List<String> shouldKeywords) throws IOException {
         SearchRequest searchRequest = new SearchRequest();
         searchRequest.indices("comc_basketball");
         SearchSourceBuilder sourceBuilder = new SearchSourceBuilder();
         BoolQueryBuilder builder = QueryBuilders.boolQuery();
-        for (String keyword : keywords) {
+        for (String keyword : mustKeywords) {
             builder.must(QueryBuilders.matchQuery("title.standard", keyword));
+        }
+        for (String keyword : shouldKeywords) {
+            builder.should(QueryBuilders.matchQuery("title.standard", keyword));
         }
         sourceBuilder.query(builder);
         sourceBuilder.size(20);
@@ -286,9 +296,11 @@ public class OcrSearchHandler {
 //    private void fillList(List<ComcBasketballDTO> list, List<String> seriesList) {
 //        for (ComcBasketballDTO item : list) {
 //            String series = item.getTitle().split(" - ")[0].trim();
-//            //String pattern = "^[a-zA-Z0-9]{1,4}-?[a-zA-Z0-9]{0,4}$";
-//            if (!seriesList.contains(series.split(" ")[1]))
-//                seriesList.add(series.split(" ")[1]);
+//            String[] seriesArr = series.split(" ");
+//            if (!seriesList.contains(seriesArr[1]))
+//                seriesList.add(seriesArr[1]);
+//            if (seriesArr.length > 2 && !seriesList.contains(seriesArr[2]))
+//                seriesList.add(seriesArr[2]);
 //        }
 //        System.out.println(JacksonUtil.toJSONString(seriesList));
 //    }
