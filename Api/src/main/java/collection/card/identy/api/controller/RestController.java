@@ -4,10 +4,10 @@ import collection.card.identy.api.handler.JacksonUtil;
 import collection.card.identy.api.handler.RequestHandler;
 import collection.card.identy.api.model.OcrSearchRequestType;
 import collection.card.identy.api.model.OcrSearchResponseType;
-import collection.card.identy.api.model.SearchRequestType;
-import collection.card.identy.api.model.SearchResponseType;
+import collection.card.identy.api.model.TextSearchRequestType;
+import collection.card.identy.api.model.TextSearchResponseType;
 import collection.card.identy.api.service.OcrSearchHandler;
-import collection.card.identy.api.service.SearchHandler;
+import collection.card.identy.api.service.TextSearchHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,22 +22,15 @@ import java.util.Map;
 @Controller
 public class RestController {
     @Autowired
-    private SearchHandler searchHandler;
-    @Autowired
     private OcrSearchHandler ocrSearchHandler;
+    @Autowired
+    private TextSearchHandler textSearchHandler;
 
     @GetMapping("/")
     public String welcome(Map<String, Object> model) throws Exception {
         model.put("time", new Date());
         model.put("message", "welcome");
         return "welcome";
-    }
-
-    @ResponseBody
-    @RequestMapping(value = "/search", method = RequestMethod.POST, produces = "application/json")
-    public SearchResponseType search(HttpServletRequest request) throws Exception {
-        String requestJson = RequestHandler.getRequestPayload(request);
-        return searchHandler.handler(JacksonUtil.parseFromJson(requestJson, SearchRequestType.class));
     }
 
     @ResponseBody
@@ -51,5 +44,12 @@ public class RestController {
     public OcrSearchResponseType ocrSearch(HttpServletRequest request) throws Exception {
         String requestJson = RequestHandler.getRequestPayload(request);
         return ocrSearchHandler.handler(JacksonUtil.parseFromJson(requestJson, OcrSearchRequestType.class));
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/textSearch", method = RequestMethod.POST, produces = "application/json")
+    public TextSearchResponseType textSearch(HttpServletRequest request) throws Exception {
+        String requestJson = RequestHandler.getRequestPayload(request);
+        return textSearchHandler.handler(JacksonUtil.parseFromJson(requestJson, TextSearchRequestType.class));
     }
 }
