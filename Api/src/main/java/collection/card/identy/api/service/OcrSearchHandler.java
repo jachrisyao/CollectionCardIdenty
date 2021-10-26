@@ -2,10 +2,7 @@ package collection.card.identy.api.service;
 
 import collection.card.identy.api.es.EsClient;
 import collection.card.identy.api.handler.JacksonUtil;
-import collection.card.identy.api.model.ComcBasketballDTO;
-import collection.card.identy.api.model.ComcBasketballResponseWrapper;
-import collection.card.identy.api.model.OcrSearchRequestType;
-import collection.card.identy.api.model.OcrSearchResponseType;
+import collection.card.identy.api.model.*;
 import collection.card.identy.api.proxy.OcrService;
 import com.tencentcloudapi.ocr.v20181119.models.TextDetectionEn;
 import org.elasticsearch.action.search.SearchRequest;
@@ -44,18 +41,24 @@ public class OcrSearchHandler {
         TextDetectionEn[] frontKeyWords = ocrService.getKeyWords(request.getFrontUrl());
         TextDetectionEn[] backKeyWords = ocrService.getKeyWords(request.getBackUrl());
 
+        KeyWordDTO keyWordDTO = new KeyWordDTO();
         List<String> keywords = new ArrayList<>();
         List<String> yearSeriesKeyWords = getYearSeries(backKeyWords);
-        if (yearSeriesKeyWords != null)
+        if (yearSeriesKeyWords != null) {
             keywords.addAll(yearSeriesKeyWords);
+            keyWordDTO.setYearKeyWords(yearSeriesKeyWords);
+        }
         List<String> numberKeyWords = getNumber(backKeyWords);
-        if (numberKeyWords != null)
+        if (numberKeyWords != null) {
             keywords.addAll(numberKeyWords);
+            keyWordDTO.setNumberKeyWords(numberKeyWords);
+        }
         List<String> nameKeywords = getName(ArrayUtils.concat(frontKeyWords, backKeyWords, TextDetectionEn.class), keywords);
+        keyWordDTO.setOtherKeyWords(nameKeywords);
         response.setCardList(getList(keywords, nameKeywords));
 
         keywords.addAll(nameKeywords);
-        response.setKeywords(JacksonUtil.toJSONString(keywords));
+        response.setKeywords(keyWordDTO);
         return response;
     }
 

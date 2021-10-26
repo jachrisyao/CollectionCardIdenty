@@ -3,14 +3,14 @@ package collection.card.identy.api.model;
 import java.util.List;
 
 public class OcrSearchResponseType {
-    private String keywords;
+    private KeyWordDTO keywords;
     private List<ComcBasketballDTO> cardList;
 
-    public String getKeywords() {
+    public KeyWordDTO getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(String keywords) {
+    public void setKeywords(KeyWordDTO keywords) {
         this.keywords = keywords;
     }
 
