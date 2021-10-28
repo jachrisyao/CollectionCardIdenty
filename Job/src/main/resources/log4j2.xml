@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration>
     <properties>
-        <property name="LOG_PATH">/www/wwwroot/collectors/logs</property>
+        <property name="LOG_PATH">/www/wwwroot/collectors_basketball/logs</property>
     </properties>
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
