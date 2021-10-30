@@ -53,9 +53,17 @@ public class OcrSearchHandler {
             keywords.addAll(numberKeyWords);
             keyWordDTO.setNumberKeyWords(numberKeyWords);
         }
-        List<String> nameKeywords = getName(ArrayUtils.concat(frontKeyWords, backKeyWords, TextDetectionEn.class), keywords);
+        TextDetectionEn[] array = new TextDetectionEn[]{};
+        if (frontKeyWords != null)
+            array = ArrayUtils.concat(array, frontKeyWords, TextDetectionEn.class);
+        if (backKeyWords != null)
+            array = ArrayUtils.concat(array, backKeyWords, TextDetectionEn.class);
+        List<String> nameKeywords = getName(array, keywords);
         keyWordDTO.setOtherKeyWords(nameKeywords);
-        response.setCardList(getList(keywords, nameKeywords));
+        if (keywords.size() > 0)
+            response.setCardList(getList(keywords, nameKeywords));
+        else
+            response.setCardList(new ArrayList<>());
 
         keywords.addAll(nameKeywords);
         response.setKeywords(keyWordDTO);
@@ -63,6 +71,9 @@ public class OcrSearchHandler {
     }
 
     private List<String> getYearSeries(TextDetectionEn[] array) {
+        if (array == null)
+            return new ArrayList<>();
+
         //必须满足的条件
         String yearPattern1 = "[1,2]{1}[0-9]{3}([^\"]+)";
         String yearPattern2 = "[1,2]{1}[0-9]{3}-[0-9]{2}([^\"]+)";
@@ -121,6 +132,9 @@ public class OcrSearchHandler {
     }
 
     private List<String> getNumber(TextDetectionEn[] array) {
+        if (array == null)
+            return new ArrayList<>();
+
         List<Long> xys = rangeXY(array);
         String numberPattern1 = "^[a-zA-Z0-9]{1,4}-[a-zA-Z0-9]{0,4}$";
         String numberPattern2 = "^[0-9]{1,3}$";

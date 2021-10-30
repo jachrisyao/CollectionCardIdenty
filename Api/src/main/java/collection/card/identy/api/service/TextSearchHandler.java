@@ -32,8 +32,10 @@ public class TextSearchHandler {
             response.setCardList(getList(request.getTitle()));
         else if (request.getKeyWords() != null) {
             List<String> mustKeyList = new ArrayList<>();
-            mustKeyList.addAll(request.getKeyWords().getNumberKeyWords());
-            mustKeyList.addAll(request.getKeyWords().getYearKeyWords());
+            if (request.getKeyWords().getNumberKeyWords() != null)
+                mustKeyList.addAll(request.getKeyWords().getNumberKeyWords());
+            if (request.getKeyWords().getYearKeyWords() != null)
+                mustKeyList.addAll(request.getKeyWords().getYearKeyWords());
             response.setCardList(getList(mustKeyList, request.getKeyWords().getOtherKeyWords()));
         }
         return response;
